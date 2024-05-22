@@ -26,6 +26,7 @@ class Product:
         price = value
         if price <= 0:
             print('Цена введена некорректная')
+        else:
         self.__price = price
 
 
