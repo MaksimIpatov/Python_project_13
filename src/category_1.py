@@ -23,6 +23,7 @@ class Category:
 
     def add_product(self, new_product):
         self.products.append(new_product)
+
     @property
     def products(self):
         return_products = []
@@ -30,4 +31,7 @@ class Category:
             product = f'{i.title}, {i.price} руб. Остаток: {i.quantity_in_stock} шт.'
             return_products.append(product)
         return return_products
+
+    def __str__(self):
+        return f"{self.__products}, 'количество продуктов:' {self.quantity_in_stock} 'шт.'"
 
