@@ -19,9 +19,10 @@ def test_Category(test_category):
 
 @pytest.fixture
 def test_product():
-    return Product('Яблоки', 'зеленые', 49.99, 78)
+    return Product('Яблоки', 'зимние', 49.99, 78)
 def test_Product(test_product):
     assert test_product.title == 'Яблоки'
-    assert test_product.description == 'зеленые'
+    assert test_product.description == 'зимние'
     assert test_product.price == 49.99
     assert test_product.quantity_in_stock == 78
+    assert test_product.colour == 'красные'
