@@ -34,12 +34,11 @@ class Product:
     def __str__(self):
         return f"{self.title}, {self.__price} 'руб.' 'Остаток:' {self.quantity_in_stock} 'шт.'"
 
-    def __add__(self, other)-> float:
-        """"Метод для определения полной стоимости товаров на складе"""
-        """"Если обьект принадлежит классу или классу наследнику возвращаем"""
-        if isinstance(other, self.__class__):
-            return (self.__price * self.quantity + other.__price * self.quantity)
-        raise TypeError
+    def __add__(self, other):
+        if self.__class__ != other.__class__:
+            raise TypeError("Сложение экземпляров разных  классов запрещено")
+        return self.price * self.quantity + other.price * other.quantity
+
 
 class Smartphone(Product):
     def __init__(self, title, description, price, quantity_in_stock, colour, efficiency,  model, amount_memory):
@@ -49,7 +48,8 @@ class Smartphone(Product):
         self.amount_memory = amount_memory
 
     def __add__(self, other):
-        raise TypeError("Сложение экземпляров класса Smartphone запрещено!!!!")
+        raise TypeError("Сложение экземпляров класса Smartphone запрещено")
+
 
 
 class Lawn_grass(Product):
@@ -59,7 +59,7 @@ class Lawn_grass(Product):
         self.germination_period = germination_period
 
     def __add__(self, other):
-        raise TypeError("Сложение экземпляров класса Lawn_grass запрещено!!!!")
+        raise TypeError("Сложение экземпляров  класса Lawn_grass запрещено")
 
 
 

@@ -22,7 +22,12 @@ class Category:
 
 
     def add_product(self, new_product):
-        self.products.append(new_product)
+        """Метод добавления  продукта"""
+        if isinstance(new_product, Category):
+            self.products.append(new_product)
+        else:
+            print("Добавление объектов из других классов запрещено, только из Category")
+
 
     @property
     def products(self):
