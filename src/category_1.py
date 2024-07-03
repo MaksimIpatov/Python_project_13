@@ -23,10 +23,10 @@ class Category:
 
     def add_product(self, new_product):
         """Метод добавления  продукта"""
-        if isinstance(new_product, Category):
-            self.products.append(new_product)
+        if type(new_product)==type(self.__products[0]):
+            self.__products.append(new_product)
         else:
-            print("Добавление объектов из других классов запрещено, только из Category")
+            print("Добавление объектов из других классов запрещено, только из type self.__products[0]")
 
 
     @property
