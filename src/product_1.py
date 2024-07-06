@@ -47,7 +47,9 @@ class Smartphone(Product):
         self.model = model
         self.amount_memory = amount_memory
 
-    def __add__(self, other):
+    def __add__(self, product):
+        if isinstance(product, Product):
+            self.products.append(product)
         raise TypeError("Сложение экземпляров класса Smartphone запрещено")
 
 
@@ -58,11 +60,15 @@ class Lawn_grass(Product):
         self.country_origin = country_origin
         self.germination_period = germination_period
 
-    def __add__(self, other):
+    def __add__(self, product):
+        if isinstance(product, Product):
+            self.products.append(product)
         raise TypeError("Сложение экземпляров  класса Lawn_grass запрещено")
 
 
 
+lw = Lawn_grass(1,1,1,1,1,1,1)
+print(lw + lw)
 
 
 
