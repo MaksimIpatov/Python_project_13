@@ -1,3 +1,4 @@
+from src.product_1 import Product
 
 
 class Category:
@@ -23,10 +24,9 @@ class Category:
 
     def add_product(self, new_product):
         """Метод добавления  продукта"""
-        if type(new_product)==type(self.__products[0]):
+        if isinstance(new_product, Product):
             self.__products.append(new_product)
-        else:
-            print("Добавление объектов из других классов запрещено, только из type self.__products[0]")
+        raise TypeError("Добавление экземпляров класса запрещено!!!!!")
 
 
     @property
@@ -39,4 +39,7 @@ class Category:
 
     def __str__(self):
         return f"{self.__products}, 'количество продуктов:' {self.quantity_in_stock} 'шт.'"
+
+
+
 

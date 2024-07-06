@@ -37,7 +37,7 @@ class Product:
     def __add__(self, other):
         if self.__class__ != other.__class__:
             raise TypeError("Сложение экземпляров разных  классов запрещено")
-        return self.price * self.quantity + other.price * other.quantity
+        return self.price * self.quantity_in_stock + other.price * other.quantity_in_stock
 
 
 class Smartphone(Product):
@@ -47,24 +47,12 @@ class Smartphone(Product):
         self.model = model
         self.amount_memory = amount_memory
 
-    def __add__(self, product):
-        if isinstance(product, Product):
-            self.products.append(product)
-        raise TypeError("Сложение экземпляров класса Smartphone запрещено")
-
-
 
 class Lawn_grass(Product):
     def __init__(self, title, description, price, quantity_in_stock, colour, country_origin, germination_period):
         super().__init__(title, description, price, quantity_in_stock, colour)
         self.country_origin = country_origin
         self.germination_period = germination_period
-
-    def __add__(self, product):
-        if isinstance(product, Product):
-            self.products.append(product)
-        raise TypeError("Сложение экземпляров  класса Lawn_grass запрещено")
-
 
 
 lw = Lawn_grass(1,1,1,1,1,1,1)
