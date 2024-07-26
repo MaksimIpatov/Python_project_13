@@ -1,10 +1,35 @@
-class Product:
+
+from abc import ABC, abstractmethod
+class AbstractProduct(ABC):
+    @abstractmethod
+    def __init__(self, title: str, description: str, price: float, quantity_in_stock: int, colour: str):
+        self.title = title
+        self.description = description
+        self.__price = price
+        self.quantity_in_stock = quantity_in_stock
+        self.colour = colour
+
+
+class ReprMixin():
+    """Миксин для вывода информации о создании объекта"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print(self)
+    def __repr__(self):
+        attrs = ', '.join(f"{attr}: {value}" for attr, value in self.__dict__.items())
+        return f"{self.__class__.__name__}({attrs})"
+
+
+class Product(ReprMixin, AbstractProduct):
     """Класс продукты обладает свойствами название, описание, цена, количество в наличии"""
     title: str
     description: str
     price: float
     quantity_in_stock: int
     colour: str
+
+    def __init__(self, title, description, price, quantity_in_stock, colour):
+        super().__init__(title, description, price, quantity_in_stock, colour)
 
     def __init__(self, title, description, price, quantity_in_stock, colour):
         """Инициализация экземпляров класса Product"""
@@ -55,9 +80,9 @@ class Lawn_grass(Product):
         self.germination_period = germination_period
 
 
-lw = Lawn_grass(1,1,1,1,1,1,1)
-print(lw + lw)
-
+if __name__ == "__main__":
+    phone = Smartphone("iPhone", "Latest model", 999.99, 5, "Black", "High", "13 Pro", 128)
+    grass = Lawn_grass("GreenMix", "Lawn grass seed", 19.99, 100, "Green", "USA", 7)
 
 
 
