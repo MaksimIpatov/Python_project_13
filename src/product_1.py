@@ -2,13 +2,8 @@
 from abc import ABC, abstractmethod
 class AbstractProduct(ABC):
     @abstractmethod
-    def __init__(self, title: str, description: str, price: float, quantity_in_stock: int, colour: str):
-        self.title = title
-        self.description = description
-        self.__price = price
-        self.quantity_in_stock = quantity_in_stock
-        self.colour = colour
-
+    def create_product(self, title, description, price, quantity_in_stock, colour):
+        pass
 
 class ReprMixin():
     """Миксин для вывода информации о создании объекта"""
@@ -40,8 +35,8 @@ class Product(ReprMixin, AbstractProduct):
         self.colour = colour
 
     @classmethod
-    def create_product(cls, prod_dict):
-        return cls(**prod_dict)
+    def create_product(cls, title, description, price, quantity_in_stock, colour):
+        return cls(title, description, price, quantity_in_stock, colour)
 
     @property
     def price(self):
@@ -78,6 +73,12 @@ class Lawn_grass(Product):
         super().__init__(title, description, price, quantity_in_stock, colour)
         self.country_origin = country_origin
         self.germination_period = germination_period
+
+
+"""Проверка вывода в консоль сообщения"""
+product = Product.create_product('Продукт1', 'Описание продукта', 1200, 10, 'red')
+print(product)
+
 
 
 if __name__ == "__main__":
