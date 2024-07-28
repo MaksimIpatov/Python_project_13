@@ -8,7 +8,6 @@ class AbstractProduct(ABC):
 class ReprMixin():
     """Миксин для вывода информации о создании объекта"""
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
         print(self)
     def __repr__(self):
         attrs = ', '.join(f"{attr}: {value}" for attr, value in self.__dict__.items())
@@ -24,15 +23,13 @@ class Product(ReprMixin, AbstractProduct):
     colour: str
 
     def __init__(self, title, description, price, quantity_in_stock, colour):
-        super().__init__(title, description, price, quantity_in_stock, colour)
-
-    def __init__(self, title, description, price, quantity_in_stock, colour):
         """Инициализация экземпляров класса Product"""
         self.title = title
         self.description = description
         self.__price = price
         self.quantity_in_stock = quantity_in_stock
         self.colour = colour
+        super().__init__(title, description, price, quantity_in_stock, colour)
 
     @classmethod
     def create_product(cls, title, description, price, quantity_in_stock, colour):
