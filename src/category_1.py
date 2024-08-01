@@ -23,10 +23,22 @@ class Category:
 
 
     def add_product(self, new_product):
-        """Метод добавления  продукта"""
+        """Метод добавления  продукта, при попытке добавить товар с остатком ноль завершение метода!!!!"""
         if isinstance(new_product, Product):
+            if new_product.quantity_in_stock == 0:
+                raise ValueError("Товар с количеством ноль нельзя быть добавить!!!!")
             self.__products.append(new_product)
         raise TypeError("Добавление экземпляров класса запрещено!!!!!")
+
+
+    def get_average_price(self):
+        """Метод подсчета средней цены товаров или 0 если количество товаров ноль!!!"""
+        try:
+            sum_price = sum([product.price for product in self.products])
+            average_price = sum_price / len(self.products)
+            return average_price
+        except ZeroDivisionError:
+            return 0
 
 
     @property
